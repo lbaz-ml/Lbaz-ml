@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -165,6 +166,206 @@
     .footer strong { color: var(--text); letter-spacing: .14em; }
     .social { display: flex; gap: 16px; flex-wrap: wrap; }
     .social a:hover { color: var(--blue); }
+    .scanline { height: 1px; background: linear-gradient(90deg, transparent, rgba(53,217,255,.5), rgba(168,85,247,.5), transparent); }
+
+    .flex-badge {
+      display: inline-flex; align-items: center; gap: 12px; margin-top: 18px; padding: 10px 15px;
+      border: 1px solid rgba(53,217,255,.45); border-radius: 13px;
+      background: linear-gradient(100deg, rgba(124,58,237,.2), rgba(53,217,255,.07));
+      box-shadow: 0 0 24px rgba(53,217,255,.08);
+    }
+    .flex-badge-icon { font-size: 1.7rem; color: #75eaff; text-shadow: 0 0 15px rgba(53,217,255,.7); }
+    .flex-badge strong { display: block; font-size: .82rem; letter-spacing: .12em; color: #b9f5ff; }
+    .flex-badge small { display: block; margin-top: 3px; font-size: .64rem; letter-spacing: .18em; color: var(--muted); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+
+    .quick-dock {
+      position: fixed; z-index: 900; left: 50%; bottom: 16px; transform: translateX(-50%);
+      display: flex; gap: 9px; padding: 8px; max-width: calc(100vw - 20px);
+      border: 1px solid rgba(100,220,255,.3); border-radius: 16px;
+      background: rgba(8,8,24,.88); backdrop-filter: blur(16px);
+      box-shadow: 0 8px 35px rgba(0,0,0,.4), 0 0 24px rgba(124,58,237,.15);
+    }
+    .quick-dock .btn { white-space: nowrap; padding: 11px 14px; font-size: .78rem; }
+    .theme-player {
+      position: fixed; z-index: 850; right: 14px; bottom: 84px; width: 220px;
+      padding: 10px; border-radius: 14px; border: 1px solid rgba(100,220,255,.32);
+      background: rgba(8,8,24,.88); backdrop-filter: blur(14px);
+      box-shadow: 0 8px 30px rgba(0,0,0,.35);
+    }
+    .theme-player-label { font-size: .67rem; letter-spacing: .14em; font-weight: 900; color: #b9f5ff; margin: 0 0 8px; }
+    .theme-player iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 8px; }
+    @media (max-width: 560px) {
+      .quick-dock { bottom: 8px; gap: 6px; padding: 6px; width: calc(100vw - 16px); justify-content: center; }
+      .quick-dock .btn { flex: 1; padding: 11px 7px; font-size: .69rem; }
+      .theme-player { right: 8px; bottom: 68px; width: 175px; }
+      body { padding-bottom: 66px; }
+    }
+    .btn-modal { cursor: pointer; font: inherit; }
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 1000; display: none; place-items: center;
+      padding: 18px; background: rgba(3, 3, 12, .78); backdrop-filter: blur(12px);
+    }
+    .modal-backdrop.open { display: grid; }
+    .modal {
+      width: min(720px, 100%); max-height: min(86vh, 900px); overflow: auto;
+      border-radius: 22px; position: relative; padding: clamp(22px, 5vw, 34px);
+      background: linear-gradient(145deg, rgba(24,20,54,.98), rgba(7,8,23,.98));
+      border: 1px solid rgba(100,220,255,.4);
+      box-shadow: 0 0 65px rgba(111,60,255,.24), 0 0 22px rgba(53,217,255,.08);
+    }
+    .modal::before {
+      content: ""; position: absolute; top: 0; left: 18%; right: 18%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue), var(--purple), transparent);
+    }
+    .modal-head { display: flex; justify-content: space-between; align-items: start; gap: 16px; margin-bottom: 22px; }
+    .modal-head h2 { margin: 7px 0 0; }
+    .modal-close {
+      width: 40px; height: 40px; flex: 0 0 40px; border-radius: 12px; color: var(--text);
+      border: 1px solid var(--line); background: rgba(255,255,255,.05); cursor: pointer; font-size: 1.35rem;
+    }
+    .modal-close:hover { border-color: var(--blue); color: var(--blue); }
+    .modal-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .modal-stat {
+      padding: 17px; border: 1px solid rgba(151,126,255,.22); border-radius: 14px;
+      background: rgba(255,255,255,.035);
+    }
+    .modal-stat .card-value { font-size: clamp(1.05rem, 4vw, 1.45rem); }
+    .modal-footnote { margin: 18px 0 0; color: var(--muted); font-size: .8rem; line-height: 1.7; }
+    .modal-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .modal-links .btn { width: auto; }
+    body.modal-open { overflow: hidden; }
+    @media (max-width: 480px) {
+      .modal-grid { grid-template-columns: 1fr; }
+      .modal-links .btn { width: 100%; }
+    }
+
+    @media (max-width: 760px) {
+      .nav { padding: 17px 0; }
+      .navlinks { gap: 12px; font-size: .78rem; }
+      .hero { grid-template-columns: 1fr; padding: 58px 0 38px; gap: 8px; }
+      .visual { min-height: 345px; }
+      .tag-one { left: 3%; top: 13%; } .tag-two { right: 2%; bottom: 12%; }
+      .grid { grid-template-columns: 1fr; }
+      .section { padding-bottom: 54px; }
+      .section-head { align-items: start; flex-direction: column; }
+      .achievement { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 420px) {
+      .wrap { width: min(100% - 26px, 1120px); }
+      .navlinks a:nth-child(2) { display: none; }
+      h1 { font-size: 4.2rem; }
+      .btn { width: 100%; }
+      .sigil-mark { font-size: 4.8rem; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .orbit { animation: orbitPulse 9s ease-in-out infinite alternate; }
+      .sigil { animation: float 5s ease-in-out infinite; }
+      @keyframes orbitPulse { from { transform: rotate(-25deg) scale(.97); } to { transform: rotate(-12deg) scale(1.03); } }
+      @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap nav">
+    <a class="brand" href="#top" aria-label="LBAZ home">LB<span>AZ</span><span style="color:#aaa7c7">.</span></a>
+    <nav class="navlinks" aria-label="Main navigation">
+      <a href="#profile">Profile</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#achievement">Achievement</a>
+    </nav>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> ABYSS SIGNAL DETECTED</div>
+        <h1>LBAZ</h1>
+        <div class="subtitle">ENTER THE <span class="glow">ABYSS.</span></div>
+        <div class="flex-badge" aria-label="Global No. 30 Leomord; Top 1 Algeria is LBAZ’s national standing">
+          <span class="flex-badge-icon">♛</span>
+          <span><strong>GLOBAL No. 30</strong><small>LEOMORD · TOP 1 ALGERIA</small></span>
+        </div>
+        <p class="intro">A Mobile Legends: Bang Bang player with Leomord at the core. Welcome to my zone — gameplay, highlights, and the grind behind the name <strong>ʟвᴀz.</strong></p>
+        <div class="hero-actions">
+          <a class="btn btn-secondary" href="https://www.tiktok.com/@lbaz_ml" target="_blank" rel="noopener noreferrer">▶ TIKTOK</a>
+        </div>
+      </div>
+      <div class="visual" aria-label="Original neon Abyss-inspired LBAZ emblem">
+        <div class="orbit"></div>
+        <div class="float-tag tag-one">✦ ABYSS MAIN</div>
+        <div class="sigil">
+          <div class="sigil-inner">
+            <div class="sigil-mark">LB<br>AZ</div>
+            <div class="sigil-caption">VOID // ACTIVE</div>
+          </div>
+        </div>
+        <div class="float-tag tag-two">LEOMORD // ONLINE</div>
+      </div>
+    </section>
+
+    <div class="scanline"></div>
+
+    <section id="profile" class="section">
+      <div class="section-head">
+        <div><div class="section-kicker">PLAYER DATABASE / 001</div><h2>Profile data</h2></div>
+        <div class="section-note">Mobile Legends: Bang Bang</div>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="card-label">In-game identity</div>
+          <div class="card-value accent">ʟвᴀz.</div>
+          <div class="card-sub">Known as LBAZ</div>
+        </article>
+        <article class="card">
+          <div class="card-label">Signature hero</div>
+          <div class="card-value">Leomord</div>
+          <div class="card-sub">Abyss aesthetic. Relentless pressure.</div>
+        </article>
+        <article class="card">
+          <div class="card-label">Player ID / Server</div>
+          <div class="card-value">654388033</div>
+          <div class="card-sub">Server ID: 8606</div>
+        </article>
+      </div>
+      <div style="height:15px"></div>
+      <div class="grid" aria-label="Leomord all-season statistics">
+        <article class="card">
+          <div class="card-label">Highest Hero Power / MMR</div>
+          <div class="card-value accent">11,000</div>
+          <div class="card-sub">Leomord · highest recorded Hero Power shown in your screenshot</div>
+        </article>
+        <article class="card">
+          <div class="card-label">All-season matches</div>
+          <div class="card-value">1,019</div>
+          <div class="card-sub">Leomord matches</div>
+        </article>
+        <article class="card">
+          <div class="card-label">All-season win rate</div>
+          <div class="card-value accent">64.2%</div>
+          <div class="card-sub">Leomord · All Seasons</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="highlights" class="section">
+      <div class="section-head">
+        <div><div class="section-kicker">FIELD RECORDINGS / 002</div><h2>Gameplay highlights</h2></div>
+        <div class="section-note">Tap a clip to watch on TikTok</div>
+      </div>
+      <div class="grid">
+        <article class="card video-card">
+          <div class="video-icon">◈</div>
+          <div class="card-label">Clip 01 / Gameplay</div>
+          <div class="card-value">Abyss transmission</div>
+          <div class="card-sub">One of LBAZ's featured clips.</div>
+          <a class="btn btn-secondary" href="https://vt.tiktok.com/ZSgqQft5c/" target="_blank" rel="noopener noreferrer">WATCH CLIP ↗</a>
+        </article>
+        <article class="card video-card">
+          <div class="video-icon">⌁</div>
+          <div class="card-label">Clip 02 / Gameplay</div>
+          <div class="card-value">Combat log</div>
+          <div class="card-sub">Open the clip on TikTok.<or: var(--blue); }
     .scanline { height: 1px; background: linear-gradient(90deg, transparent, rgba(53,217,255,.5), rgba(168,85,247,.5), transparent); }
 
     .flex-badge {
